@@ -33,7 +33,7 @@ const components = [
       { 
         name: 'Tabs', 
         key: 'tabs', 
-        description: 'iOS-style tabs with smooth transitions' 
+        description: 'Style tabs with smooth transitions' 
       },
       { 
         name: 'Menu', 

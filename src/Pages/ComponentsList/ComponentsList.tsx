@@ -1,9 +1,16 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import './ComponentsList.css'
 import LeftBar from '../../Shared/Sections/LeftBar/LeftBar'
 import Button from '../../Shared/Components/Button/Button'
 import Input from '../../Shared/Components/Input/Input'
+import Header from '../../Shared/Sections/Header/Header'
+
+const MOBILE_COMPONENTS = [
+  { key: 'button', label: 'Button' },
+  { key: 'input', label: 'Input' },
+  { key: 'card', label: 'Card' },
+]
 
 const ComponentsList = () => {
   const location = useLocation()
@@ -11,6 +18,15 @@ const ComponentsList = () => {
   const [selectedComponent, setSelectedComponent] = useState<string>('button')
   const [copiedType, setCopiedType] = useState<string | null>(null)
   const [expandedBlocks, setExpandedBlocks] = useState<Record<string, boolean>>({})
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768)
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   const copyToClipboard = async (text: string, type: string) => {
     try {
@@ -335,27 +351,54 @@ export default Input`,
         )
       case 'card':
         return (
-          <div>
-            <h2>Card Component</h2>
-            <div className="card">
-              <h3>Card Title</h3>
-              <p>Card content</p>
+          <div className="component-demo">
+            <div className="component-demo__preview">
+              <div className="in-development">
+                <h2>In Development</h2>
+                <p>This component is currently under development. Check back soon!</p>
+              </div>
             </div>
           </div>
         )
       default:
         return (
-          <div>
-            <h2>Select a component</h2>
-            <p>Choose a component from the left menu to see its preview</p>
+            <div className="component-demo">
+            <div className="component-demo__preview">
+              <div className="in-development">
+                <h2>In Development</h2>
+                <p>This component is currently under development. Check back soon!</p>
+              </div>
+            </div>
           </div>
         )
     }
   }
 
   return (
-    <div className="components-list">
-      <LeftBar onSelectComponent={setSelectedComponent} />
+    <div className={`components-list${isMobileMenuOpen ? ' mobile-menu-open' : ''}`}>
+      <Header />
+      {isMobile && (
+        <button 
+          className="mobile-menu-toggle"
+          onClick={() => setIsMobileMenuOpen(true)}
+          aria-label="Open menu"
+        >
+          <span className="mobile-menu-toggle__icon"></span>
+        </button>
+      )}
+      {isMobile && isMobileMenuOpen && (
+        <>
+          <div className="mobile-menu-overlay" onClick={() => setIsMobileMenuOpen(false)} />
+          <button className="mobile-menu__close" onClick={() => setIsMobileMenuOpen(false)} aria-label="Close menu">×</button>
+          <LeftBar onSelectComponent={(component) => {
+            setSelectedComponent(component)
+            setIsMobileMenuOpen(false)
+          }} />
+        </>
+      )}
+      {!isMobile && (
+        <LeftBar onSelectComponent={setSelectedComponent} />
+      )}
       <main className="components-list__content">
         <div className="components-list__header">
           <h1 className="components-list__title">Components</h1>

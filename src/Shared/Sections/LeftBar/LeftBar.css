@@ -1,12 +1,13 @@
 .left-bar {
   width: 300px;
-  height: 100vh;
+  height: calc(100vh - 80px); /* Учитываем высоту Header */
   background: rgba(234, 226, 183, 0.03);
   backdrop-filter: blur(20px);
   border-right: 1px solid rgba(234, 226, 183, 0.1);
   padding: 2rem 1.5rem;
   overflow-y: auto;
   position: sticky;
+  top: 80px; /* Отступ от верха равен высоте Header */
 }
 
 .left-bar__header {
@@ -112,4 +113,27 @@
 
 .left-bar::-webkit-scrollbar-thumb:hover {
   background: rgba(234, 226, 183, 0.3);
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-open .left-bar,
+  .mobile-menu-open .left-bar * {
+    max-width: 100% !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    overflow-wrap: break-word !important;
+  }
+  .left-bar__list,
+  .left-bar__section,
+  .left-bar__item {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  .left-bar__link {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+    text-align: left !important;
+  }
 }

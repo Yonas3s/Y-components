@@ -6,7 +6,7 @@ const Header = () => {
     <header className="header">
       <div className="header__container">
         <Link to="/" className="header__logo">
-          <span className="header__logo-text">Y</span>
+          <img src="/logo.svg" alt="Y-bits" className="header__logo-image" />
         </Link>
         
         <div className="header__right">
@@ -16,10 +16,7 @@ const Header = () => {
                 <Link to="/" className="header__nav-link">Home</Link>
               </li>
               <li className="header__nav-item">
-                <Link to="/about" className="header__nav-link">About</Link>
-              </li>
-              <li className="header__nav-item">
-                <Link to="/contact" className="header__nav-link">Contact</Link>
+                <Link to="/contacts" className="header__nav-link">Contacts</Link>
               </li>
             </ul>
           </nav>
