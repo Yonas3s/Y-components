@@ -1,0 +1,204 @@
+.components-list {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  background: rgba(0, 48, 73, 0.95);
+}
+
+.components-list__content {
+  padding: 2rem;
+}
+
+.components-list__preview {
+  background: rgba(234, 226, 183, 0.03);
+  border-radius: 1rem;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+  border: 1px solid rgba(234, 226, 183, 0.08);
+  backdrop-filter: blur(20px);
+}
+
+.components-list__content h2 {
+  color: var(--vanilla);
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.components-list__content p {
+  color: var(--xanthous);
+  font-size: 1.1rem;
+  opacity: 0.8;
+}
+
+.components-list__header {
+  margin-bottom: 3rem;
+  padding-top: 1rem;
+}
+
+.components-list__title {
+  color: var(--vanilla);
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  background: linear-gradient(to right, var(--vanilla), var(--xanthous));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.components-list__description {
+  color: var(--xanthous);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  opacity: 0.8;
+  max-width: 600px;
+}
+
+.components-list__main {
+  background: rgba(234, 226, 183, 0.03);
+  backdrop-filter: blur(20px);
+  border-radius: 1.5rem;
+  border: 1px solid rgba(234, 226, 183, 0.1);
+  padding: 2rem;
+  min-height: 500px;
+}
+
+.component-demo {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.component-demo__preview {
+  background: rgba(234, 226, 183, 0.03);
+  border-radius: 1rem;
+  padding: 2rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  min-height: 100px;
+  border: 1px solid rgba(234, 226, 183, 0.08);
+  backdrop-filter: blur(20px);
+}
+
+.preview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  width: 100%;
+}
+
+.component-demo__code {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+}
+
+.code-block {
+  background: rgba(234, 226, 183, 0.03);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  border: 1px solid rgba(234, 226, 183, 0.08);
+}
+
+.code-block__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.code-block__header h3 {
+  color: var(--orange-wheel);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+.code-block__copy {
+  background: rgba(234, 226, 183, 0.05);
+  border: 1px solid rgba(234, 226, 183, 0.1);
+  color: var(--vanilla);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.code-block__copy:hover {
+  background: rgba(234, 226, 183, 0.1);
+  border-color: rgba(234, 226, 183, 0.2);
+}
+
+.code-block__content {
+  position: relative;
+}
+
+.code-block__content pre {
+  margin: 0;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  max-height: 200px;
+  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.code-block__content.expanded pre {
+  max-height: 1000px;
+}
+
+.code-block__content:not(.expanded) pre::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.95));
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.code-block__content.expanded pre::after {
+  opacity: 0;
+}
+
+.code-block__expand-wrapper {
+  position: absolute;
+  bottom: 1rem;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  z-index: 1;
+}
+
+.code-block__expand {
+  background: rgba(234, 226, 183, 0.05);
+  border: 1px solid rgba(234, 226, 183, 0.1);
+  color: var(--vanilla);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.code-block__expand:hover {
+  background: rgba(234, 226, 183, 0.1);
+  border-color: rgba(234, 226, 183, 0.2);
+}
+
+.code-block code {
+  color: var(--vanilla);
+  font-family: 'Fira Code', monospace;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  white-space: pre;
+}

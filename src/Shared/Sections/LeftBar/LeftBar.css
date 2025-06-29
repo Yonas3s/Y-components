@@ -1,0 +1,115 @@
+.left-bar {
+  width: 300px;
+  height: 100vh;
+  background: rgba(234, 226, 183, 0.03);
+  backdrop-filter: blur(20px);
+  border-right: 1px solid rgba(234, 226, 183, 0.1);
+  padding: 2rem 1.5rem;
+  overflow-y: auto;
+  position: sticky;
+}
+
+.left-bar__header {
+  margin-bottom: 2rem;
+  padding-top: 1rem;
+}
+
+.left-bar__title {
+  color: var(--vanilla);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(to right, var(--vanilla), var(--xanthous));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.left-bar__description {
+  color: var(--xanthous);
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.left-bar__section {
+  margin-bottom: 2rem;
+}
+
+.left-bar__section-title {
+  color: var(--orange-wheel);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+  padding-left: 0.5rem;
+}
+
+.left-bar__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.left-bar__item {
+  margin-bottom: 0.75rem;
+}
+
+
+.left-bar__nav {
+  background: transparent;
+}
+
+.left-bar__link {
+  display: block;
+  padding: 0.75rem;
+  text-decoration: none;
+  border-radius: 0.75rem;
+  transition: all 0.2s ease;
+  position: relative;
+  background: rgba(234, 226, 183, 0.03);
+  border: 1px solid rgba(234, 226, 183, 0.08);
+  cursor: pointer;
+}
+
+.left-bar__link:hover {
+  background: rgba(234, 226, 183, 0.05);
+  border-color: rgba(234, 226, 183, 0.15);
+  transform: translateX(4px);
+}
+
+.left-bar__link.active {
+  background: rgba(234, 226, 183, 0.08);
+  border-color: var(--xanthous);
+}
+
+.left-bar__component-name {
+  display: block;
+  color: var(--vanilla);
+  font-size: 0.95rem;
+  margin-bottom: 0.35rem;
+}
+
+.left-bar__component-description {
+  display: block;
+  color: var(--xanthous);
+  font-size: 0.8rem;
+  opacity: 0.7;
+  line-height: 1.4;
+}
+
+/* Стилизация скроллбара */
+.left-bar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.left-bar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.left-bar::-webkit-scrollbar-thumb {
+  background: rgba(234, 226, 183, 0.2);
+  border-radius: 3px;
+}
+
+.left-bar::-webkit-scrollbar-thumb:hover {
+  background: rgba(234, 226, 183, 0.3);
+}

@@ -1,0 +1,46 @@
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input__label {
+  color: #EAE2B7;
+  font-size: 14px;
+  padding-left: 12px;
+}
+
+.input {
+  background: rgba(234, 226, 183, 0.1);
+  border: none;
+  border-radius: 980px;
+  padding: 12px 24px;
+  font-size: 16px;
+  color: #EAE2B7;
+  transition: background 0.2s ease;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.input::placeholder {
+  color: rgba(234, 226, 183, 0.5);
+}
+
+.input:hover {
+  background: rgba(234, 226, 183, 0.15);
+}
+
+.input:focus {
+  background: rgba(234, 226, 183, 0.15);
+  outline: none;
+}
+
+.input--small {
+  padding: 8px 16px;
+  font-size: 14px;
+}
+
+.input--large {
+  padding: 16px 32px;
+  font-size: 18px;
+}

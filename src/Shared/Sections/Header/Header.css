@@ -1,0 +1,148 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(234, 226, 183, 0.03);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(234, 226, 183, 0.1);
+}
+
+.header__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.2rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__right {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.header__logo {
+  text-decoration: none;
+}
+
+.header__logo-text {
+  color: var(--vanilla);
+  font-size: 1.2rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+.header__nav {
+  background: transparent;
+}
+
+.header__nav-list {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.header__nav-item {
+  position: relative;
+  background: transparent;
+}
+
+.header__nav-link {
+  color: var(--vanilla);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 400;
+  padding: 0.5rem 0;
+  transition: color 0.2s ease;
+  position: relative;
+  background: transparent;
+}
+
+.header__nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 1px;
+  transition: all 0.2s ease;
+  transform: translateX(-50%);
+}
+
+.header__nav-link:hover {
+  color: var(--orange-wheel);
+}
+
+.header__nav-link:hover::after {
+  width: 100%;
+}
+
+.header__nav-link.active {
+  color: var(--orange-wheel);
+}
+
+.header__nav-link.active::after {
+  width: 100%;
+}
+
+.header__buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.header__button {
+  padding: 0.5rem 1.2rem;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 400;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+.header__button--login {
+  color: var(--vanilla);
+  opacity: 0.8;
+}
+
+.header__button--login:hover {
+  opacity: 1;
+}
+
+.header__button--signup {
+  background: var(--fire-engine-red);
+  color: var(--vanilla);
+}
+
+.header__button--signup:hover {
+  background: var(--orange-wheel);
+}
+
+@media (max-width: 768px) {
+  .header__container {
+    padding: 1rem;
+  }
+
+  .header__right {
+    gap: 1.5rem;
+  }
+
+  .header__nav-list {
+    gap: 1.5rem;
+  }
+
+  .header__buttons {
+    gap: 0.5rem;
+  }
+
+  .header__button {
+    padding: 0.4rem 1rem;
+    font-size: 0.9rem;
+  }
+} 
