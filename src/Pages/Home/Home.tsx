@@ -12,7 +12,7 @@ const Home = () => {
         <div className="glass__content">
           <h1>JUST Y</h1>
           <p>Say hello to your next-generation React components.</p>
-          <Button onClick={() => navigate('/components')}>Get Started</Button>
+          <Button onClick={() => navigate('/components')}>Get Started V0.1.0</Button>
         </div>
       </div>
     </div>
