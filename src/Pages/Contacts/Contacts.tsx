@@ -22,7 +22,7 @@ const Contacts = () => {
           
           <div className="contact-item">
             <span className="contact-label">telegram</span>
-            <a href="https://t.me/yonas" className="contact-link">
+            <a href="https://t.me/yokio42" className="contact-link">
               @yokio42
             </a>
           </div>
