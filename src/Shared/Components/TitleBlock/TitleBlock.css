@@ -1,0 +1,10 @@
+.title-block {
+  width: 100%;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.118);
+  text-align: left;
+}
+
+.title-block__title {
+  font-size: 24px;
+  margin: 20px;
+}

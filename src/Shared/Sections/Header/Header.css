@@ -4,9 +4,7 @@
   left: 0;
   right: 0;
   z-index: 100;
-  background: rgba(234, 226, 183, 0.03);
   backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(234, 226, 183, 0.1);
 }
 
 .header__container {
@@ -26,6 +24,10 @@
 
 .header__logo {
   text-decoration: none;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 100;
+  letter-spacing: 2px;
 }
 
 .header__logo-text {
@@ -122,6 +124,19 @@
 
 .header__button--signup:hover {
   background: var(--orange-wheel);
+}
+
+.header-cart-icon {
+  height: 18px;
+  width: 18px;
+}
+
+@media (min-width: 1300px) {
+  .header__container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 1.2rem 0;
+  }
 }
 
 @media (max-width: 768px) {

@@ -16,7 +16,7 @@ a {
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #000000;
   position: relative;
   min-height: 100vh;
 
@@ -88,13 +88,13 @@ body::after {
 }
 
 body::before {
-  background: var(--fire-engine-red);
+  /* background: var(--fire-engine-red); */
   top: -50%;
   left: -20%;
 }
 
 body::after {
-  background: var(--orange-wheel);
+  /* background: var(--orange-wheel); */
   bottom: -50%;
   right: -20%;
 }

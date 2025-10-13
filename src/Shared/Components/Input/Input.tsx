@@ -1,38 +1,17 @@
-import './Input.css'    
+import "./Input.css";
 
 interface InputProps {
-  placeholder?: string
-  value?: string
-  onChange?: (value: string) => void
-  size?: 'small' | 'large'
-  label?: string
+  type: string;
+  placeholder: string;
+  value?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  marginBottom?: string;
+  required?: boolean;
 }
 
-const Input = ({ 
-  placeholder, 
-  value, 
-  onChange,
-  size,
-  label 
-}: InputProps) => {
-  const className = ['input']
-  if (size) {
-    className.push(`input--${size}`)
-  }
-
+const Input = ({ type, placeholder, value, onChange, marginBottom, required }: InputProps) => {
   return (
-    <div className="input-wrapper">
-      {label && (
-        <label className="input__label">{label}</label>
-      )}
-      <input
-        className={className.join(' ')}
-        type="text"
-        placeholder={placeholder}
-        value={value}
-        onChange={(e) => onChange?.(e.target.value)}
-      />
-    </div>
+    <input type={type} placeholder={placeholder} value={value} onChange={onChange} className="input-field" style={{ marginBottom: marginBottom }} required={required}   />
   )
 }
 
