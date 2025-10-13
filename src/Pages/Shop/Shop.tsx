@@ -1,4 +1,4 @@
-import { useState, type ChangeEvent } from "react";
+import { useEffect, useMemo, useState, type ChangeEvent } from "react";
 import Button from "../../Shared/Components/Button/Button";
 import CheckBox from "../../Shared/Components/CheckBox/CheckBox";
 import FormLayout from "../../Shared/Components/FormLayout/FormLayout";
@@ -9,35 +9,79 @@ import Switch from "../../Shared/Components/Switch/Switch";
 import Stepper from "../../Shared/Components/Stepper/Stepper";
 import Slider from "../../Shared/Components/Slider/Slider";
 import Modal from "../../Shared/Components/Modal/Modal";
+import PriceTag from "../../Shared/Components/PriceTag/PriceTag";
 import "./Shop.css";
 
 const Shop = () => {
   const [checkedItems, setCheckedItems] = useState<Record<string, boolean>>({});
+  const [isHydrated, setIsHydrated] = useState(false);
   const [isToggleEnabled, setIsToggleEnabled] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [progress, setProgress] = useState(45);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem("shop:checkedItems");
+      if (stored) {
+        const parsed = JSON.parse(stored) as Record<string, boolean>;
+        if (parsed["I agree"]) {
+          delete parsed["I agree"];
+        }
+        setCheckedItems(parsed);
+      }
+    } catch (error) {
+      console.error("Failed to restore selections", error);
+    } finally {
+      setIsHydrated(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!isHydrated) return;
+    try {
+      localStorage.setItem("shop:checkedItems", JSON.stringify(checkedItems));
+    } catch (error) {
+      console.error("Failed to persist selections", error);
+    }
+  }, [checkedItems, isHydrated]);
+
   const handleCheckBoxChange =
     (id: string) => (event: ChangeEvent<HTMLInputElement>) => {
       const { checked } = event.target;
-      setCheckedItems((prev) => ({
-        ...prev,
-        [id]: checked,
-      }));
+      setCheckedItems((prev) => {
+        const next = {
+          ...prev,
+          [id]: checked,
+        };
+
+        if (isHydrated) {
+          try {
+            localStorage.setItem("shop:checkedItems", JSON.stringify(next));
+          } catch (error) {
+            console.error("Failed to persist selections", error);
+          }
+        }
+
+        return next;
+      });
     };
 
   const lowPrice = "$2 per component";
   const mediumPrice = "$3 per component";
   const largePrice = "$4 per component";
+  const selectedCount = useMemo(
+    () => Object.values(checkedItems).filter(Boolean).length,
+    [checkedItems]
+  );
 
   return (
     <section className="shop">
-      <Header />
+      <Header selectedCount={selectedCount} />
       <TitleBlock title="Starter pack" />
       <div className="grid">
         <FormLayout>
-          <span className="form-layout__price">{lowPrice}</span>
+          <PriceTag value={lowPrice} />
           <Button>Button</Button>
           <CheckBox
             name="feature-buttons"
@@ -49,7 +93,7 @@ const Shop = () => {
         </FormLayout>
 
         <FormLayout>
-          <span className="form-layout__price">{lowPrice}</span>
+          <PriceTag value={lowPrice} />
           <Input type="text" placeholder="Placeholder" />
           <CheckBox
             name="feature-inputs"
@@ -61,13 +105,13 @@ const Shop = () => {
         </FormLayout>
 
         <FormLayout>
-          <span className="form-layout__price">{lowPrice}</span>
+          <PriceTag value={lowPrice} />
           <CheckBox
             name="I agree"
             value="I agree"
             label="I agree"
-            checked={Boolean(checkedItems["I agree"])}
-            onChange={handleCheckBoxChange("I agree")}
+            checked={false}
+            onChange={() => undefined}
           />
           <CheckBox
             name="checkbox"
@@ -81,7 +125,7 @@ const Shop = () => {
       <TitleBlock title="Toggle" />
       <div className="grid">
         <FormLayout>
-          <span className="form-layout__price">{mediumPrice}</span>
+          <PriceTag value={mediumPrice} />
           <Switch
             name="feature-toggle"
             label="Enable kit updates"
@@ -100,7 +144,7 @@ const Shop = () => {
       <TitleBlock title="Adjustments" />
       <div className="grid">
         <FormLayout>
-          <span className="form-layout__price">{mediumPrice}</span>
+          <PriceTag value={mediumPrice} />
           <Stepper value={quantity} onChange={setQuantity} min={1} max={12} />
           <CheckBox
             name="Stepper"
@@ -111,7 +155,7 @@ const Shop = () => {
           />
         </FormLayout>
         <FormLayout>
-          <span className="form-layout__price">{mediumPrice}</span>
+          <PriceTag value={mediumPrice} />
           <Slider
             min={0}
             max={32}
@@ -128,7 +172,7 @@ const Shop = () => {
           />
         </FormLayout>
         <FormLayout>
-          <span className="form-layout__price">{largePrice}</span>
+          <PriceTag value={largePrice} />
           <Button size="small" onClick={() => setIsModalOpen(true)}>
             Preview modal
           </Button>
