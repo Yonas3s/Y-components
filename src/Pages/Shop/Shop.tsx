@@ -8,6 +8,7 @@ import Input from "../../Shared/Components/Input/Input";
 import Switch from "../../Shared/Components/Switch/Switch";
 import Stepper from "../../Shared/Components/Stepper/Stepper";
 import Slider from "../../Shared/Components/Slider/Slider";
+import Modal from "../../Shared/Components/Modal/Modal";
 import "./Shop.css";
 
 const Shop = () => {
@@ -15,6 +16,7 @@ const Shop = () => {
   const [isToggleEnabled, setIsToggleEnabled] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [progress, setProgress] = useState(45);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleCheckBoxChange =
     (id: string) => (event: ChangeEvent<HTMLInputElement>) => {
@@ -25,8 +27,9 @@ const Shop = () => {
       }));
     };
 
-  const priceLabel = "$2 per component";
-  const priceLabelMore = "$3 per component";
+  const lowPrice = "$2 per component";
+  const mediumPrice = "$3 per component";
+  const largePrice = "$4 per component";
 
   return (
     <section className="shop">
@@ -34,7 +37,7 @@ const Shop = () => {
       <TitleBlock title="Starter pack" />
       <div className="grid">
         <FormLayout>
-          <span className="form-layout__price">{priceLabel}</span>
+          <span className="form-layout__price">{lowPrice}</span>
           <Button>Button</Button>
           <CheckBox
             name="feature-buttons"
@@ -46,7 +49,7 @@ const Shop = () => {
         </FormLayout>
 
         <FormLayout>
-          <span className="form-layout__price">{priceLabel}</span>
+          <span className="form-layout__price">{lowPrice}</span>
           <Input type="text" placeholder="Placeholder" />
           <CheckBox
             name="feature-inputs"
@@ -58,7 +61,7 @@ const Shop = () => {
         </FormLayout>
 
         <FormLayout>
-          <span className="form-layout__price">{priceLabel}</span>
+          <span className="form-layout__price">{lowPrice}</span>
           <CheckBox
             name="I agree"
             value="I agree"
@@ -78,7 +81,7 @@ const Shop = () => {
       <TitleBlock title="Toggle" />
       <div className="grid">
         <FormLayout>
-          <span className="form-layout__price">{priceLabelMore}</span>
+          <span className="form-layout__price">{mediumPrice}</span>
           <Switch
             name="feature-toggle"
             label="Enable kit updates"
@@ -97,14 +100,8 @@ const Shop = () => {
       <TitleBlock title="Adjustments" />
       <div className="grid">
         <FormLayout>
-          <span className="form-layout__price">{priceLabelMore}</span>
-          <Stepper
-            label="Components in bundle"
-            value={quantity}
-            onChange={setQuantity}
-            min={1}
-            max={12}
-          />
+          <span className="form-layout__price">{mediumPrice}</span>
+          <Stepper value={quantity} onChange={setQuantity} min={1} max={12} />
           <CheckBox
             name="Stepper"
             value="Stepper"
@@ -114,17 +111,51 @@ const Shop = () => {
           />
         </FormLayout>
         <FormLayout>
-          <span className="form-layout__price">{priceLabelMore}</span>
+          <span className="form-layout__price">{mediumPrice}</span>
           <Slider
-            label="Border radius preset"
             min={0}
             max={32}
             step={2}
             value={progress}
             onChange={setProgress}
           />
+          <CheckBox
+            name="Slider"
+            value="Slider"
+            label="Slider"
+            checked={Boolean(checkedItems["Slider"])}
+            onChange={handleCheckBoxChange("Slider")}
+          />
+        </FormLayout>
+        <FormLayout>
+          <span className="form-layout__price">{largePrice}</span>
+          <Button size="small" onClick={() => setIsModalOpen(true)}>
+            Preview modal
+          </Button>
+          <CheckBox
+            name="Modal"
+            value="Modal"
+            label="Modal"
+            checked={Boolean(checkedItems["Modal"])}
+            onChange={handleCheckBoxChange("Modal")}
+          />
         </FormLayout>
       </div>
+      <Modal
+        open={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        title="Save your kit"
+        primaryLabel="Save selection"
+        onPrimaryClick={() => setIsModalOpen(false)}
+        secondaryLabel="Not now"
+        onSecondaryClick={() => setIsModalOpen(false)}
+      >
+        <p>
+          Keep the current selection so you can pick up customisation later.
+          We’ll store the components, presets, and tokens you’ve chosen so far.
+        </p>
+        <p>Next time you open the builder, everything will be right where you left it.</p>
+      </Modal>
     </section>
   );
 };

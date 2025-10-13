@@ -7,7 +7,6 @@ type StepperProps = {
   min?: number;
   max?: number;
   step?: number;
-  label?: string;
   disabled?: boolean;
 };
 
@@ -17,9 +16,11 @@ const Stepper = ({
   min = Number.NEGATIVE_INFINITY,
   max = Number.POSITIVE_INFINITY,
   step = 1,
-  label,
   disabled = false,
 }: StepperProps) => {
+  const containerClasses = ["stepper"];
+  if (disabled) containerClasses.push("stepper--disabled");
+
   const clamp = (next: number) => Math.min(Math.max(next, min), max);
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -42,8 +43,7 @@ const Stepper = ({
   const canIncrease = !disabled && value < max;
 
   return (
-    <div className={`stepper ${disabled ? "stepper--disabled" : ""}`}>
-      {label && <span className="stepper__label">{label}</span>}
+    <div className={containerClasses.join(" ")}>
       <div className="stepper__controls">
         <button
           type="button"

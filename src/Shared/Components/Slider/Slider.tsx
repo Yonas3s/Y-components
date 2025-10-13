@@ -1,4 +1,4 @@
-import type { ChangeEvent } from "react";
+import type { ChangeEvent, CSSProperties } from "react";
 import "./Slider.css";
 
 type SliderProps = {
@@ -7,7 +7,6 @@ type SliderProps = {
   min?: number;
   max?: number;
   step?: number;
-  label?: string;
   disabled?: boolean;
   showValue?: boolean;
 };
@@ -18,10 +17,12 @@ const Slider = ({
   min = 0,
   max = 100,
   step = 1,
-  label,
   disabled = false,
   showValue = true,
 }: SliderProps) => {
+  const containerClasses = ["slider"];
+  if (disabled) containerClasses.push("slider--disabled");
+
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const next = Number(event.target.value);
     if (Number.isNaN(next)) return;
@@ -31,8 +32,7 @@ const Slider = ({
   const progress = ((value - min) / (max - min)) * 100;
 
   return (
-    <div className={`slider ${disabled ? "slider--disabled" : ""}`}>
-      {label && <span className="slider__label">{label}</span>}
+    <div className={containerClasses.join(" ")}>
       <div className="slider__track-wrapper">
         <input
           type="range"
@@ -46,7 +46,7 @@ const Slider = ({
           style={
             {
               "--slider-progress": `${progress}%`,
-            } as React.CSSProperties
+            } as CSSProperties
           }
         />
         {showValue && <span className="slider__value">{value}</span>}
