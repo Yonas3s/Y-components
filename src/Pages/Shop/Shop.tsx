@@ -126,21 +126,6 @@ const Shop = () => {
   return (
     <section className="shop">
       <Header selectedCount={selectedCount} />
-      <section className="shop__metrics">
-        {METRIC_SAMPLE.map((metric) => (
-          <MetricCard
-            key={metric.id}
-            title={metric.title}
-            caption={metric.caption}
-            value={metric.value}
-            deltaLabel={metric.deltaLabel}
-            deltaTone={metric.deltaTone}
-            sparklineData={metric.sparklineData}
-            sparklineColor={metric.sparklineColor}
-            ariaLabel={`${metric.title}: ${metric.value} (${metric.deltaLabel ?? "no change"})`}
-          />
-        ))}
-      </section>
       <TitleBlock title="Starter pack" />
       <div className="grid">
         <FormLayout>
