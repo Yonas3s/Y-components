@@ -6,54 +6,15 @@ import FormLayout from "../../Shared/Components/FormLayout/FormLayout";
 import PriceTag from "../../Shared/Components/PriceTag/PriceTag";
 import CheckBox from "../../Shared/Components/CheckBox/CheckBox";
 import Button from "../../Shared/Components/Button/Button";
+import {
+  COMPONENT_CATALOG,
+  type ComponentCatalogItem,
+} from "../../Shared/data/catalog";
 import "./Cart.css";
 
 type CheckedMap = Record<string, boolean>;
 
-type CartItem = {
-  id: string;
-  label: string;
-  price: number;
-};
-
-const CATALOG: CartItem[] = [
-  {
-    id: "feature-buttons",
-    label: "Button",
-    price: 2,
-  },
-  {
-    id: "feature-inputs",
-    label: "Form Input",
-    price: 2,
-  },
-  {
-    id: "Checkbox",
-    label: "Checkbox",
-    price: 2,
-  },
-  {
-    id: "toggle button",
-    label: "Toggle button",
-    price: 3,
-  },
-  {
-    id: "Stepper",
-    label: "Stepper",
-    price: 3,
-  },
-  {
-    id: "Slider",
-    label: "Slider",
-    price: 3,
-  },
-  {
-    id: "Modal",
-    label: "Modal",
-    price: 4,
-  },
-];
-
+const CATALOG: ComponentCatalogItem[] = COMPONENT_CATALOG;
 const STORAGE_KEY = "shop:checkedItems";
 
 const Cart = () => {

@@ -87,18 +87,26 @@ const Modal = ({
       >
         <FormLayout className="modal__panel" align="left" width="100%" maxWidth="420px">
           <div className="modal__content">
-            {(title || description) && (
-              <header className="modal__header">
+            <header className="modal__header">
+              <div className="modal__header-row">
                 {title && (
                   <h2 id={titleId} className="modal__title">
                     {title}
                   </h2>
                 )}
-                {description && (
-                  <p className="modal__description">{description}</p>
-                )}
-              </header>
-            )}
+                <button
+                  type="button"
+                  className="modal__close"
+                  aria-label="Close modal"
+                  onClick={onClose}
+                >
+                  ×
+                </button>
+              </div>
+              {description && (
+                <p className="modal__description">{description}</p>
+              )}
+            </header>
             {children && (
               <>
                 <div className="modal__divider" />
@@ -110,7 +118,7 @@ const Modal = ({
               {secondaryAction ? (
                 <button
                   type="button"
-                  className="modal__ghost-"
+                  className="modal__ghost-button"
                   onClick={handleSecondary}
                 >
                   {secondaryAction.label}
@@ -128,14 +136,6 @@ const Modal = ({
             </footer>
           </div>
         </FormLayout>
-        <button
-          type="button"
-          className="modal__close"
-          aria-label="Close modal"
-          onClick={onClose}
-        >
-          ×
-        </button>
       </div>
     </div>
   );

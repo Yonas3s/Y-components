@@ -1,0 +1,81 @@
+.metric-card {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 280px;
+  padding: 24px;
+  border-radius: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(18px);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  color: #ffffff;
+}
+
+.metric-card__header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.metric-card__title {
+  margin: 0;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.metric-card__caption {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.52);
+}
+
+.metric-card__value-row {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.metric-card__value {
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.metric-card__delta {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  letter-spacing: 0.01em;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.metric-card__delta--positive {
+  color: #2dd4bf;
+}
+
+.metric-card__delta--negative {
+  color: #f87171;
+}
+
+.metric-card__delta--neutral {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.metric-card__sparkline {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.metric-card__sparkline-line {
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.metric-card__sparkline-fill {
+  stroke: none;
+}

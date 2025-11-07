@@ -1,6 +1,16 @@
 .cart {
   min-height: 100vh;
-  padding: 120px 24px 80px;
+  padding: 100px 24px 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 56px;
+  box-sizing: border-box;
+}
+
+.cart {
+  min-height: 100vh;
+  padding: 100px 24px 80px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -144,7 +154,7 @@
     max-width: 100%;
   }
 
-  .cart__summary-footer {
+  .cart__summary--footer {
     flex-direction: column;
     align-items: stretch;
     gap: 16px;

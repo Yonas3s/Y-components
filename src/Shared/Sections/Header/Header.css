@@ -129,6 +129,7 @@
 .header-cart-icon {
   height: 18px;
   width: 18px;
+  padding-right: 5px;
 }
 
 .header-cart {
