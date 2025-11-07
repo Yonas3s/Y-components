@@ -300,6 +300,7 @@ const Shop = () => {
         </p>
         <p>Next time you open the builder, everything will be right where you left it.</p>
       </Modal>
+      <p className="shop__version">y4bits kit builder v0.1</p>
     </section>
   );
 };
