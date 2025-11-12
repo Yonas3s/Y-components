@@ -3,25 +3,18 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import "./Header.css";
 import logo from "../../../assets/logo_y4.svg";
 import Button from "../../Components/Button/Button";
-import cart from "../../../assets/cart.svg";
 
-type HeaderProps = {
-  selectedCount?: number;
-};
-
-const Header: FC<HeaderProps> = ({ selectedCount = 0 }) => {
+const Header: FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const isShopRoute = location.pathname === "/shop";
-  const isCartRoute = location.pathname === "/cart";
-  const showCartButton = isShopRoute || isCartRoute;
-  const showCartBadge = showCartButton && selectedCount > 0;
+  const ctaLabel = isShopRoute ? "Back home" : "Get Started";
 
-  const handleCartClick = () => {
-    if (isCartRoute) {
-      navigate("/shop");
+  const handleCtaClick = () => {
+    if (isShopRoute) {
+      navigate("/");
     } else {
-      navigate("/cart");
+      navigate("/shop");
     }
   };
 
@@ -31,18 +24,7 @@ const Header: FC<HeaderProps> = ({ selectedCount = 0 }) => {
         <Link to="/" className="header__logo">
           <img src={logo} />
         </Link>
-        {showCartButton ? (
-          <Button onClick={handleCartClick}>
-            <span className="header-cart">
-              <img className="header-cart-icon" src={cart} alt="Cart" />
-              {showCartBadge && (
-                <span className="header-cart-badge">{selectedCount}</span>
-              )}
-            </span>
-          </Button>
-        ) : (
-          <Button onClick={() => navigate("/shop")}>Get Started</Button>
-        )}
+        <Button onClick={handleCtaClick}>{ctaLabel}</Button>
       </div>
     </header>
   );

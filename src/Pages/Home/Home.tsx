@@ -18,7 +18,7 @@ const Home = () => {
     forms: true,
     analytics: false,
   });
-  const [packageName, setPackageName] = useState("Growth Starter");
+  const [packageName, setPackageName] = useState("Старт роста");
   const [autoUpdatesEnabled, setAutoUpdatesEnabled] = useState(true);
   const [isIntroLoading, setIsIntroLoading] = useState(true);
 
@@ -60,9 +60,9 @@ const Home = () => {
           padding={70}
         >
           <div className="home__hero-bubble">
-            <span className="home__bubble-label">JUST Y.</span>
+            <span className="home__bubble-label">Только Y.</span>
             <p className="home__bubble-text">
-              Say hello to your next-generation React components.
+              Познакомьтесь с React-компонентами нового поколения.
             </p>
           </div>
         </AnimatedOutline>
@@ -70,139 +70,139 @@ const Home = () => {
 
       <section className="home__intro">
         <div className="home__hero-content">
-          <div className="home__badge">Component marketplace</div>
-          <h1 className="home__title">Components from $2. Pay only for what ships.</h1>
+          <div className="home__badge">Маркетплейс компонентов</div>
+          <h1 className="home__title">Компоненты от 200 ₽. Платите только за релиз.</h1>
           <p className="home__subtitle">
-            Choose the UI pieces you actually need, request quick tweaks to border radius or brand colors,
-            and receive a ready-to-ship kit in minutes. No bundles, no subscriptions—just the essentials on your terms.
+            Выбирайте только те UI-блоки, что действительно нужны, просите быстро поправить скругления или брендовые цвета —
+            и получайте готовый к поставке набор за считанные минуты. Никаких подписок и бандлов, только нужные детали на ваших условиях.
           </p>
           <div className="home__actions">
             <Button size="large" onClick={() => navigate("/shop")}>
-              Build your kit
+              Собрать набор
             </Button>
             <Button size="small" onClick={() => navigate("/shop")}>
-              Browse components
+              Посмотреть компоненты
             </Button>
           </div>
           <div className="home__metrics">
             <div className="home__metric">
-              <span className="home__metric-value">From $2</span>
-              <span className="home__metric-label">per component</span>
+              <span className="home__metric-value">От 200 ₽</span>
+              <span className="home__metric-label">за компонент</span>
             </div>
             <div className="home__metric">
               <span className="home__metric-value">40+</span>
-              <span className="home__metric-label">ready-to-use blocks</span>
+              <span className="home__metric-label">готовых блоков</span>
             </div>
             <div className="home__metric">
-              <span className="home__metric-value">24h</span>
-              <span className="home__metric-label">turnaround delivery</span>
+              <span className="home__metric-value">24 часа</span>
+              <span className="home__metric-label">на поставку</span>
             </div>
           </div>
         </div>
       </section>
 
       <section className="home__section">
-        <TitleBlock title="How it works" />
+        <TitleBlock title="Как это работает" />
         <div className="home__grid">
           <FormLayout
-            title="Choose the essentials"
-            description="Select only the foundations you need—CTA buttons, form inputs, toggles, and more."
+            title="Выберите базу"
+            description="Отметьте только те основы, что нужны: CTA-кнопки, поля форм, тумблеры и многое другое."
             width="100%"
             maxWidth="100%"
           >
             <CheckBox
               name="landing-buttons"
               value="buttons"
-              label="Buttons & CTAs"
+              label="Кнопки и CTA"
               checked={selectedComponents.buttons}
               onChange={handleComponentToggle("buttons")}
             />
             <CheckBox
               name="landing-forms"
               value="forms"
-              label="Form elements"
+              label="Элементы формы"
               checked={selectedComponents.forms}
               onChange={handleComponentToggle("forms")}
             />
             <CheckBox
               name="landing-analytics"
               value="analytics"
-              label="Analytics overlays"
+              label="Виджеты аналитики"
               checked={selectedComponents.analytics}
               onChange={handleComponentToggle("analytics")}
             />
           </FormLayout>
 
           <FormLayout
-            title="Make it yours"
-            description="Rename components, adjust border radius and accent colors, and preview copy before you pay."
+            title="Сделайте под себя"
+            description="Переименуйте компоненты, настройте скругления и акцентные цвета и посмотрите копирайт до оплаты."
             width="100%"
             maxWidth="100%"
           >
             <Input
               type="text"
-              placeholder="Name your kit"
+              placeholder="Назовите набор"
               value={packageName}
               onChange={(event) => setPackageName(event.target.value)}
             />
             <Switch
               name="auto-updates"
-              label="Auto-sync updates"
+              label="Автообновления"
               checked={autoUpdatesEnabled}
               onChange={setAutoUpdatesEnabled}
             />
           </FormLayout>
 
           <FormLayout
-            title="Export & deliver"
-            description="Receive production-ready assets and code snippets tuned to your stack."
+            title="Экспорт и поставка"
+            description="Получайте готовые к продакшену ассеты и сниппеты под ваш стек."
             actions={
               <Button size="small" onClick={() => navigate("/shop")}>
-                View pricing
+                Посмотреть цены
               </Button>
             }
             width="100%"
             maxWidth="100%"
           >
             <p className="home__text">
-              Each component comes with usage notes, tokens, and responsive
-              states so your team can ship faster.
+              Каждый компонент идёт с примечаниями по использованию, токенами и
+              адаптивными состояниями, чтобы команда релизила быстрее.
             </p>
           </FormLayout>
         </div>
       </section>
 
       <section className="home__section">
-        <TitleBlock title="Why teams choose us" />
+        <TitleBlock title="Почему нас выбирают команды" />
         <div className="home__pillars">
           <FormLayout
-            title="Transparent pricing"
-            description="Components start at $2 and scale with the checklist you build."
+            title="Прозрачная цена"
+            description="Компоненты стоят от 200 ₽ и добавляются по мере заполнения чек-листа."
             width="100%"
             maxWidth="100%"
           >
             <p className="home__text">
-              See the full price before checkout and add extras only when you need them—no bundles or hidden tiers.
+              Видите финальную стоимость до оплаты и добавляете опции только при необходимости — никаких скрытых тарифов.
             </p>
           </FormLayout>
           <FormLayout
-            title="Styling tweaks included"
-            description="Border radius and primary colors come configured for your brand."
+            title="Стили под ключ"
+            description="Скругления и основные цвета уже настроены под ваш бренд."
             width="100%"
             maxWidth="100%"
           >
             <p className="home__text">
-              Tell us the corner radius and accent color you want, and we deliver polished variants so your team can drop them straight in.
+              Скажите нужный радиус и акцентный цвет — привезём отполированные варианты, которые можно сразу внедрять.
             </p>
           </FormLayout>
           <FormLayout
-            title="Launch-ready handoff"
-            description="Usage notes and responsive states ship with every component."
+            title="Готовый к запуску пакет"
+            description="С каждой позицией идут гайды и адаптивы."
             width="100%"
             maxWidth="100%"
           >
             <p className="home__text">
-              Each kit includes interaction specs, breakpoints, and best practices so designers and engineers stay aligned.
+              В каждый набор входят спецификации взаимодействий, брейкпоинты и best practices, чтобы дизайнеры и инженеры работали синхронно.
             </p>
           </FormLayout>
         </div>
@@ -215,17 +215,16 @@ const Home = () => {
           maxWidth="560px"
           description={
             <span>
-              Build a kit that matches your roadmap—no bundles, no lock-in, just
-              the building blocks you actually use.
+              Соберите набор под свой roadmap — никаких бандлов и lock-in, только рабочие кубики.
             </span>
           }
           actions={
             <Button size="large" onClick={() => navigate("/shop")}>
-              Start selecting components
+              Начать выбирать компоненты
             </Button>
           }
         >
-          <TitleBlock title="Ready when you are" />
+          <TitleBlock title="Готовы, когда будете" />
         </FormLayout>
       </section>
     </div>

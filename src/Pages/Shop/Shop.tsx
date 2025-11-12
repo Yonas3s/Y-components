@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, type ChangeEvent } from "react";
+import { useEffect, useState, type ChangeEvent } from "react";
 import Button from "../../Shared/Components/Button/Button";
 import CheckBox from "../../Shared/Components/CheckBox/CheckBox";
 import FormLayout from "../../Shared/Components/FormLayout/FormLayout";
@@ -16,7 +16,6 @@ import MetricCard, {
 import CircularChartCard, {
   type ChartDatum,
 } from "../../Shared/Components/CircularChartCard/CircularChartCard";
-import { COMPONENT_CATALOG } from "../../Shared/data/catalog";
 import "./Shop.css";
 
 const ANALYTICS_SAMPLE_DATA: ChartDatum[] = [
@@ -65,6 +64,7 @@ const Shop = () => {
   const [quantity, setQuantity] = useState(1);
   const [progress, setProgress] = useState(45);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isAgreementChecked, setIsAgreementChecked] = useState(false);
 
   useEffect(() => {
     try {
@@ -113,60 +113,33 @@ const Shop = () => {
       });
     };
 
-  const lowPrice = "$2 per component";
-  const mediumPrice = "$3 per component";
-  const largePrice = "$4 per component";
-  const analyticsPrice = "$5 per component";
-  const selectedItems = useMemo(
-    () => COMPONENT_CATALOG.filter((item) => checkedItems[item.id]),
-    [checkedItems]
-  );
-  const selectedCount = selectedItems.length;
-
+  const lowPrice = "200₽ за компонент";
+  const mediumPrice = "300₽ за компонент";
+  const largePrice = "400₽ за компонент";
+  const analyticsPrice = "500₽ за компонент";
   return (
     <section className="shop">
-      <Header selectedCount={selectedCount} />
+      <Header />
       <TitleBlock title="Starter pack" />
       <div className="grid">
         <FormLayout>
           <PriceTag value={lowPrice} />
           <Button>Button</Button>
-          <CheckBox
-            name="feature-buttons"
-            value="button"
-            label="Button"
-            checked={Boolean(checkedItems["feature-buttons"])}
-            onChange={handleCheckBoxChange("feature-buttons")}
-          />
         </FormLayout>
 
         <FormLayout>
           <PriceTag value={lowPrice} />
           <Input type="text" placeholder="Placeholder" />
-          <CheckBox
-            name="feature-inputs"
-            value="input"
-            label="Input"
-            checked={Boolean(checkedItems["feature-inputs"])}
-            onChange={handleCheckBoxChange("feature-inputs")}
-          />
         </FormLayout>
 
         <FormLayout>
           <PriceTag value={lowPrice} />
           <CheckBox
-            name="I agree"
-            value="I agree"
+            name="agreement"
+            value="agreement"
             label="I agree"
-            checked={false}
-            onChange={() => undefined}
-          />
-          <CheckBox
-            name="checkbox"
-            value="checkbox"
-            label="Checkbox"
-            checked={Boolean(checkedItems["Checkbox"])}
-            onChange={handleCheckBoxChange("Checkbox")}
+            checked={isAgreementChecked}
+            onChange={(event) => setIsAgreementChecked(event.target.checked)}
           />
         </FormLayout>
       </div>
@@ -179,13 +152,6 @@ const Shop = () => {
             label="Enable kit updates"
             checked={isToggleEnabled}
             onChange={setIsToggleEnabled}
-          />
-          <CheckBox
-            name="toggle button"
-            value="toggle button"
-            label="Toggle button"
-            checked={Boolean(checkedItems["toggle button"])}
-            onChange={handleCheckBoxChange("toggle button")}
           />
         </FormLayout>
       </div>
@@ -204,13 +170,6 @@ const Shop = () => {
             valueFormatter={(value) => `${value}`}
             width="100%"
             maxWidth="100%"
-          />
-          <CheckBox
-            name="circular-chart-card"
-            value="circular-chart-card"
-            label="Circular chart card"
-            checked={Boolean(checkedItems["circular-chart-card"])}
-            onChange={handleCheckBoxChange("circular-chart-card")}
           />
         </FormLayout>
       </div>
@@ -232,13 +191,6 @@ const Shop = () => {
             sparklineColor={METRIC_PRODUCT_PREVIEW.sparklineColor}
             ariaLabel={`${METRIC_PRODUCT_PREVIEW.title}: ${METRIC_PRODUCT_PREVIEW.value}`}
           />
-          <CheckBox
-            name="metric-card"
-            value="metric-card"
-            label="Metric card"
-            checked={Boolean(checkedItems["metric-card"])}
-            onChange={handleCheckBoxChange("metric-card")}
-          />
         </FormLayout>
       </div>
       <TitleBlock title="Adjustments" />
@@ -246,13 +198,6 @@ const Shop = () => {
         <FormLayout>
           <PriceTag value={mediumPrice} />
           <Stepper value={quantity} onChange={setQuantity} min={1} max={12} />
-          <CheckBox
-            name="Stepper"
-            value="Stepper"
-            label="Stepper"
-            checked={Boolean(checkedItems["Stepper"])}
-            onChange={handleCheckBoxChange("Stepper")}
-          />
         </FormLayout>
         <FormLayout>
           <PriceTag value={mediumPrice} />
@@ -263,26 +208,12 @@ const Shop = () => {
             value={progress}
             onChange={setProgress}
           />
-          <CheckBox
-            name="Slider"
-            value="Slider"
-            label="Slider"
-            checked={Boolean(checkedItems["Slider"])}
-            onChange={handleCheckBoxChange("Slider")}
-          />
         </FormLayout>
         <FormLayout>
           <PriceTag value={largePrice} />
           <Button size="small" onClick={() => setIsModalOpen(true)}>
             Preview modal
           </Button>
-          <CheckBox
-            name="Modal"
-            value="Modal"
-            label="Modal"
-            checked={Boolean(checkedItems["Modal"])}
-            onChange={handleCheckBoxChange("Modal")}
-          />
         </FormLayout>
       </div>
       <Modal
